@@ -8,7 +8,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
-DATABASE_URL = "sqlite:///./tarefas.db"
+DATABASE_URL = os.getenv("DATABASE_URL")
 print("BANCO:", os.path.abspath("tarefas.db"))
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread":False})
@@ -17,8 +17,8 @@ Base = declarative_base()
 
 app = FastAPI()
 
-usuario = "Gustavo"
-senha_usuario = "1234"
+usuario = os.getenv("usuario")
+senha_usuario = os.getenv("senha")
 
 security = HTTPBasic()
 
